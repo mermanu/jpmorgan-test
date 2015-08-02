@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.stacks</groupId>
-  <artifactId>JPMorganTest</artifactId>
+  <artifactId>jpmorgan-test</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>JPMorganTest</name>
+  <name>jpmorgan-test</name>
   <url>http://maven.apache.org</url>
 
   <properties>
