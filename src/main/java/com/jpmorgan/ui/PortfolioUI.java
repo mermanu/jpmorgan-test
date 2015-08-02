@@ -4,7 +4,7 @@
  */
 package com.jpmorgan.ui;
 
-import com.jpmorgan.portfolio.services.JPMPortfolioService;
+import com.jpmorgan.factory.JPMorganServices;
 import com.jpmorgan.portfolio.services.PortfolioService;
 import java.util.Scanner;
 
@@ -42,7 +42,7 @@ public class PortfolioUI extends UIScan{
         System.out.println("Insert stock provider:");
         String provider = reader.nextLine();
         
-        PortfolioService portfolioService=new JPMPortfolioService();
+        PortfolioService portfolioService=(PortfolioService)JPMorganServices.PORTFOLIO_SERVICE.getInstance();
         portfolioService.newStock(symbol, type, lastDividend, parValue, price, fixedDividend, provider);
     }
     

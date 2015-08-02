@@ -34,8 +34,9 @@ public final class StockPrice extends StockCalculus{
                 sumOfShares = sumOfShares.add(tmpNumShares);
             }
         }
-        stock.setPrice(sumOfPrices.divide(sumOfShares));
-        stock.getCalculated().setStockPrice(sumOfPrices.divide(sumOfShares));
+        BigDecimal price = sumOfPrices.divide(sumOfShares);
+        stock.setPrice(price);
+        stock.getCalculated().setStockPrice(price);
     }
     
     private Calendar getLastRange(){

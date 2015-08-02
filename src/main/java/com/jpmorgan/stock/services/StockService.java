@@ -12,17 +12,17 @@ public interface StockService {
     /**
      *
      */
-    public void recordTrade();
+    public void recordTrade(String stockKey, String shares, String price, String indicator, String clientKey);
     /**
      *
      */
-    public void calculateDividendYield();
+    public void calculateDividendYield(String stockKey);
     /**
      *
      */
-    public void calculatePERadio();
+    public void calculatePERadio(String stockKey);
     /**
      *
      */
-    public void calculateStockPrice();
+    public void calculateStockPrice(String stockKey);
 }

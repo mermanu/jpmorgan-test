@@ -5,6 +5,7 @@
 package com.jpmorgan.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,8 @@ public class Stock {
      *
      */
     public Stock() {
+        this.trades = new ArrayList<Trade>();
+        this.calculated = new Calculated();
     }    
 
     /**
