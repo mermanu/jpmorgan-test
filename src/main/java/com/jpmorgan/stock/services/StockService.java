@@ -12,7 +12,7 @@ public interface StockService {
     /**
      *
      */
-    public void recordTrade(String stockKey, String shares, String price, String indicator, String clientKey);
+    public void recordTrade(String stockKey, String shares, String indicator, String clientKey);
     /**
      *
      */

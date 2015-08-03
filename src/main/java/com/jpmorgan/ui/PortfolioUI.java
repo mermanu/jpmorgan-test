@@ -4,8 +4,12 @@
  */
 package com.jpmorgan.ui;
 
+import com.jpmorgan.data.DataStorage;
 import com.jpmorgan.factory.JPMorganServices;
+import com.jpmorgan.model.Stock;
 import com.jpmorgan.portfolio.services.PortfolioService;
+
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 
@@ -29,7 +33,7 @@ public class PortfolioUI extends UIScan{
     public void newStock(){
         System.out.println("Insert stock symbol:");
         String symbol = reader.nextLine(); 
-        System.out.println("Insert stock type:");
+        System.out.println("Insert stock type (1:common|2:preferred):");
         String type = reader.nextLine();
         System.out.println("Insert stock last dividend:");
         String lastDividend = reader.nextLine();
@@ -50,6 +54,19 @@ public class PortfolioUI extends UIScan{
      *
      */
     public void updatePortfolio(){
-        
+    	PortfolioService portfolioService=(PortfolioService)JPMorganServices.PORTFOLIO_SERVICE.getInstance();
+    	portfolioService.calculateAllShareIndex();
+    }
+    
+    public void report(){
+    	if(!DataStorage.jpmData.getStocks().isEmpty()){
+    		System.out.println("--------------------------------------------------------------");
+    		for(Entry<String, Stock> entry: DataStorage.jpmData.getStocks().entrySet()){
+    			 System.out.println("Symbol: "+entry.getKey()+" | price: "+entry.getValue().getPrice());
+    		}
+    		System.out.println("--------------------------------------------------------------");
+    	}else{
+    		System.out.println("0 registered stocks");
+    	}
     }
 }

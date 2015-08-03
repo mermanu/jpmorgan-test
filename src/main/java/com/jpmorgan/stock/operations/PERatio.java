@@ -4,8 +4,11 @@
  */
 package com.jpmorgan.stock.operations;
 
+import com.jpmorgan.common.Constants;
 import com.jpmorgan.model.Stock;
+
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
@@ -19,7 +22,11 @@ public final class PERatio extends StockCalculus{
      */
     @Override
     public void execute(Stock stock) {
-        BigDecimal peRatio = stock.getPrice().divide((BigDecimal)stock.getCalculated().getDividendYield());
+    	BigDecimal peRatio=BigDecimal.ZERO;
+    	BigDecimal dividendYield=(BigDecimal)stock.getCalculated().getDividendYield();
+    	if(dividendYield.compareTo(BigDecimal.ZERO)>0){
+    		peRatio = stock.getPrice().divide(dividendYield, Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);    		
+    	}        
         stock.getCalculated().setPeRatio(peRatio);
     }
     

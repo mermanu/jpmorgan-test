@@ -6,7 +6,10 @@ package com.jpmorgan.ui;
 
 import com.jpmorgan.data.DataStorage;
 import com.jpmorgan.factory.JPMorganServices;
+import com.jpmorgan.model.Trade;
+import com.jpmorgan.portfolio.services.PortfolioService;
 import com.jpmorgan.stock.services.StockService;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 /**
@@ -29,34 +32,55 @@ public class StockUI extends UIScan{
     public void newTrade(){
         StockService stockService=(StockService)JPMorganServices.STOCK_SERVICE.getInstance();
         System.out.println("Insert stock symbol:");
-        String symbol = reader.nextLine(); 
-        System.out.println("Insert shares:");
-        String shares = reader.nextLine(); 
-        System.out.println("Insert price:");
-        String price = reader.nextLine(); 
-        System.out.println("Insert indicator:");
-        String indicator = reader.nextLine(); 
-        System.out.println("Insert client:");
-        String client = reader.nextLine();         
-        stockService.recordTrade(symbol, shares, price, indicator, client);
+        String symbol = reader.nextLine();
+        if(DataStorage.jpmData.getStocks().get(symbol)!=null){
+        	System.out.println("Insert shares:");
+        	String shares = reader.nextLine();
+        	System.out.println("Insert indicator (1=buy|2=sell):");
+        	String indicator = reader.nextLine(); 
+        	System.out.println("Insert client:");
+        	String client = reader.nextLine();         
+        	stockService.recordTrade(symbol, shares, indicator, client);
+        }else{
+        	System.out.println("invalid stock symbol");
+        	newTrade();
+        }
     }
     
     /**
      *
      */
     public void updateStockData(){
-        StockService stockService=(StockService)JPMorganServices.STOCK_SERVICE.getInstance();
-        System.out.println("Insert stock symbol:");
+    	System.out.println("Insert stock symbol:");
         String symbol = reader.nextLine(); 
-        
-        stockService.calculateStockPrice(symbol);
-        stockService.calculateDividendYield(symbol);
-        stockService.calculatePERadio(symbol); 
-        System.out.println("Calculated price:"+DataStorage.jpmData.getStocks().get(symbol).getPrice());
-        System.out.println("Calculated dividend yield:"+DataStorage.jpmData.getStocks().get(symbol).getCalculated().getDividendYield());
-        System.out.println("Calculated pe/ratio:"+DataStorage.jpmData.getStocks().get(symbol).getCalculated().getPeRatio());
-        System.out.println("Calculated stock price:"+DataStorage.jpmData.getStocks().get(symbol).getCalculated().getStockPrice());
-        
+        if(DataStorage.jpmData.getStocks().get(symbol)!=null){
+        	PortfolioService portfolioService=(PortfolioService)JPMorganServices.PORTFOLIO_SERVICE.getInstance();
+        	portfolioService.updateStockData(symbol);
+        }else{
+        	System.out.println("invalid stock symbol");
+        	updateStockData();
+        }
+    }
+    
+    public void report(){
+    	System.out.println("Insert stock symbol:");
+        String symbol = reader.nextLine();
+    	if(DataStorage.jpmData.getStocks().get(symbol)!=null){
+    		if(!DataStorage.jpmData.getStocks().get(symbol).getTrades().isEmpty()){
+    			SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    			int i=0;
+    			System.out.println("--------------------------------------------------------------");
+	    		for(Trade trade : DataStorage.jpmData.getStocks().get(symbol).getTrades()){
+	    			System.out.println(i+++"- time: "+format1.format(trade.getTimestamp().getTime())+" | shares:"+trade.getShares()+" | price:"+trade.getPrice()+" | client:"+trade.getClient().getName());  			
+	    		}
+	    		System.out.println("--------------------------------------------------------------");
+    		}else{
+    			System.out.println("Stock does not have any registered transaction");
+    		}
+    	}else{
+        	System.out.println("invalid stock symbol");
+        	newTrade();
+        }
     }
     
 }
