@@ -46,6 +46,6 @@ public class JPMStockService implements StockService {
         trade.setShares(sharesNumber);
         trade.setStock(stock);
         trade.setTimestamp(Calendar.getInstance());
-        stock.getTrades().add(trade);
+        stock.getTrades().put(trade.getTimestamp().getTime(), trade);
     }
 }

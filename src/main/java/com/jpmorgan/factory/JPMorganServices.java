@@ -21,6 +21,7 @@ public enum JPMorganServices {
      *
      */
     STOCK_SERVICE(new JPMStockService());
+    
     private Object instance;
 
     private JPMorganServices(Object instance) {

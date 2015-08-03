@@ -70,4 +70,13 @@ public class JPMPortfolioService implements PortfolioService {
     public void calculateAllShareIndex() throws Exception {
         PortfolioOperations.GEOMETRIC_MEAN.getInstance().execute(DataStorage.jpmData.getStocks());
     }
+
+    /**
+     *
+     * @param minutes
+     * @throws Exception
+     */
+    public void configuration(String minutes) throws Exception {
+        DataStorage.jpmData.setStockUpdateTime(Integer.parseInt(minutes));
+    }
 }

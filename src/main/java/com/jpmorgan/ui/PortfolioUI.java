@@ -8,7 +8,6 @@ import com.jpmorgan.data.DataStorage;
 import com.jpmorgan.factory.JPMorganServices;
 import com.jpmorgan.model.Stock;
 import com.jpmorgan.portfolio.services.PortfolioService;
-
 import java.util.Map.Entry;
 import java.util.Scanner;
 
@@ -57,6 +56,21 @@ public class PortfolioUI extends UIScan {
     /**
      *
      */
+    public void configuration() {
+        System.out.println("Insert time to calculate stock price (defautl=15 minutes):");
+        String time = reader.nextLine();
+        PortfolioService portfolioService = (PortfolioService) JPMorganServices.PORTFOLIO_SERVICE.getInstance();
+        try {
+            portfolioService.configuration(time);
+        } catch (Exception e) {
+            e.printStackTrace();
+            configuration();
+        }
+    }
+
+    /**
+     *
+     */
     public void updatePortfolio() {
         PortfolioService portfolioService = (PortfolioService) JPMorganServices.PORTFOLIO_SERVICE.getInstance();
         try {
@@ -74,9 +88,9 @@ public class PortfolioUI extends UIScan {
         if (!DataStorage.jpmData.getStocks().isEmpty()) {
             System.out.println("--------------------------------------------------------------");
             for (Entry<String, Stock> entry : DataStorage.jpmData.getStocks().entrySet()) {
-                System.out.println("Symbol: " + entry.getKey() + " | price: " + entry.getValue().getPrice()+ " | last dividend: " +entry.getValue().getLastDividend()
-                        + " | fixed dividend: " +entry.getValue().getFixedDividend()+ " | par value: " +entry.getValue().getParValue()
-                        + " | dividend yield: " +entry.getValue().getCalculated().getDividendYield()+ " | P/E ratio: " +entry.getValue().getCalculated().getPeRatio());   
+                System.out.println("Symbol: " + entry.getKey() + " | price: " + entry.getValue().getPrice() + " | last dividend: " + entry.getValue().getLastDividend()
+                        + " | fixed dividend: " + entry.getValue().getFixedDividend() + " | par value: " + entry.getValue().getParValue()
+                        + " | dividend yield: " + entry.getValue().getCalculated().getDividendYield() + " | P/E ratio: " + entry.getValue().getCalculated().getPeRatio());
             }
             System.out.println("--------------------------------------------------------------");
         } else {

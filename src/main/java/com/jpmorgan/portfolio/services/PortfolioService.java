@@ -35,4 +35,11 @@ public interface PortfolioService {
      * @throws Exception
      */
     public void calculateAllShareIndex() throws Exception;
+
+    /**
+     *
+     * @param minutes
+     * @throws Exception
+     */
+    public void configuration(String minutes) throws Exception;
 }

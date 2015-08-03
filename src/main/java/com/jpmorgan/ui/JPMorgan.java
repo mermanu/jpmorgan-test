@@ -1,7 +1,5 @@
 package com.jpmorgan.ui;
 
-import com.jpmorgan.data.DataStorage;
-import com.jpmorgan.data.JPMData;
 import java.util.Scanner;
 
 /**
@@ -19,9 +17,7 @@ public class JPMorgan {
      */
     public static void main(String[] args) {
         System.out.println("J&P Morgan portfolio:");
-
-        DataStorage.jpmData = new JPMData();
-
+       
         Scanner reader = new Scanner(System.in);
         String scanned = reader.nextLine();
 
@@ -51,6 +47,9 @@ public class JPMorgan {
                 case 6:
                     portfolioUi.report();
                     break;
+                case 7:
+                    portfolioUi.configuration();
+                    break;
                 default:
                     System.out.println("Insert a valid option");
                     break;
@@ -74,13 +73,14 @@ public class JPMorgan {
         System.out.println("4. Update portfolio data");
         System.out.println("5. Stock report");
         System.out.println("6. Portfolio report");
+        System.out.println("7. Configuration");
         scanned = reader.nextLine();
 
         option = 0;
         try {
             option = Integer.valueOf(scanned);
         } catch (Exception e) {
-            System.out.println("Please insert a number");
+            System.out.println("Please insert an option");
         }
     }
 }

@@ -5,12 +5,13 @@
 package com.jpmorgan.stock.operations;
 
 import com.jpmorgan.common.Constants;
+import com.jpmorgan.data.DataStorage;
 import com.jpmorgan.model.Stock;
 import com.jpmorgan.model.Trade;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -27,15 +28,14 @@ public final class StockPrice extends StockCalculus {
         BigDecimal sumOfTmpTrades = BigDecimal.ZERO;
         BigDecimal sumOfShares = BigDecimal.ZERO;
         boolean newPrice = false;
+        Date lastRange = getLastRange().getTime();
 
-        for (Trade trade : stock.getTrades()) {
-            if (trade.getTimestamp().after(getLastRange())) {
-                newPrice = true;
-                BigDecimal tmpNumShares = new BigDecimal(trade.getShares());
-                BigDecimal tmpTrade = trade.getPrice().multiply(tmpNumShares);
-                sumOfTmpTrades = sumOfTmpTrades.add(tmpTrade);
-                sumOfShares = sumOfShares.add(tmpNumShares);
-            }
+        for (Trade trade : stock.getTrades().tailMap(lastRange).values()) {
+            newPrice = true;
+            BigDecimal tmpNumShares = new BigDecimal(trade.getShares());
+            BigDecimal tmpTrade = trade.getPrice().multiply(tmpNumShares);
+            sumOfTmpTrades = sumOfTmpTrades.add(tmpTrade);
+            sumOfShares = sumOfShares.add(tmpNumShares);
         }
 
         if (newPrice) {
@@ -48,7 +48,7 @@ public final class StockPrice extends StockCalculus {
 
     private Calendar getLastRange() {
         Calendar now = Calendar.getInstance();
-        now.add(Calendar.MINUTE, -Constants.STOCK_CALC_TIME);
+        now.add(Calendar.MINUTE, -DataStorage.jpmData.getStockUpdateTime());
         return now;
     }
 }

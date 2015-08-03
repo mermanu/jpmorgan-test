@@ -4,6 +4,8 @@
  */
 package com.jpmorgan.model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author manuelmerida
@@ -22,6 +24,15 @@ public class Calculated {
      *
      */
     protected Number stockPrice;
+
+    /**
+     *
+     */
+    public Calculated() {
+        this.dividendYield = BigDecimal.ZERO;
+        this.peRatio = BigDecimal.ZERO;
+        this.stockPrice = BigDecimal.ZERO;
+    }
 
     /**
      *

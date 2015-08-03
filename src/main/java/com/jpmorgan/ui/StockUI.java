@@ -51,7 +51,9 @@ public class StockUI extends UIScan {
 
         } else {
             System.out.println("invalid stock symbol");
-            newTrade();
+            if (!DataStorage.jpmData.getStocks().isEmpty()) {
+                newTrade();
+            }
         }
     }
 
@@ -71,7 +73,9 @@ public class StockUI extends UIScan {
             }
         } else {
             System.out.println("invalid stock symbol");
-            updateStockData();
+            if (!DataStorage.jpmData.getStocks().isEmpty()) {
+                updateStockData();
+            }
         }
     }
 
@@ -86,8 +90,9 @@ public class StockUI extends UIScan {
                 SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                 int i = 0;
                 System.out.println("--------------------------------------------------------------");
-                for (Trade trade : DataStorage.jpmData.getStocks().get(symbol).getTrades()) {
-                    System.out.println(i++ + "- time: " + format1.format(trade.getTimestamp().getTime()) + " | shares:" + trade.getShares() + " | price:" + trade.getPrice() + " | client:" + trade.getClient().getName());
+                for (Trade trade : DataStorage.jpmData.getStocks().get(symbol).getTrades().values()) {
+                    System.out.println(i++ + "- time: " + format1.format(trade.getTimestamp().getTime()) + " | shares:" + trade.getShares() + " | price:" + trade.getPrice()
+                            + " | buy/sell:" + trade.getIndicator() + " | client:" + trade.getClient().getName());
                 }
                 System.out.println("--------------------------------------------------------------");
             } else {

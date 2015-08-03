@@ -6,7 +6,9 @@ package com.jpmorgan.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.util.List;
 public class Stock {
 
     private String symbol;
-    private List<Trade> trades;
+    private TreeMap<Date, Trade> trades;
     private Provider provider;
     private int type;
     private BigDecimal lastDividend;
@@ -28,7 +30,7 @@ public class Stock {
      *
      */
     public Stock() {
-        this.trades = new ArrayList<Trade>();
+        this.trades = new TreeMap<Date, Trade>();
         this.calculated = new Calculated();
     }
 
@@ -36,7 +38,7 @@ public class Stock {
      *
      * @return
      */
-    public List<Trade> getTrades() {
+    public TreeMap<Date, Trade> getTrades() {
         return trades;
     }
 
@@ -44,7 +46,7 @@ public class Stock {
      *
      * @param trades
      */
-    public void setTrades(List<Trade> trades) {
+    public void setTrades(TreeMap<Date, Trade> trades) {
         this.trades = trades;
     }
 

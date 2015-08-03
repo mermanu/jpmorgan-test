@@ -13,5 +13,5 @@ public class DataStorage {
     /**
      *
      */
-    public static JPMData jpmData;
+    public static JPMData jpmData = new JPMData(); 
 }

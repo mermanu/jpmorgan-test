@@ -29,7 +29,7 @@ public class Constants {
     /**
      *
      */
-    public static final int STOCK_CALC_TIME = 2;
+    public static final int STOCK_CALC_TIME = 15;
     /**
      *
      */

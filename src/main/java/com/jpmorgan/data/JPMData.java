@@ -4,6 +4,7 @@
  */
 package com.jpmorgan.data;
 
+import com.jpmorgan.common.Constants;
 import com.jpmorgan.model.Client;
 import com.jpmorgan.model.Provider;
 import com.jpmorgan.model.Stock;
@@ -26,7 +27,8 @@ public class JPMData {
     private List<Trade> tradesHistory;
     private Map<String, Client> clients;
     private Map<String, Provider> providers;
-    private BigDecimal allShareIndex = new BigDecimal(BigInteger.ZERO);
+    private BigDecimal allShareIndex;
+    private int stockUpdateTime;
 
     /**
      *
@@ -37,6 +39,8 @@ public class JPMData {
         this.providers = new HashMap<String, Provider>();
         this.tradesHistory = new ArrayList<Trade>();
         this.stockHistory = new ArrayList<Stock>();
+        this.allShareIndex = new BigDecimal(BigInteger.ZERO);
+        this.stockUpdateTime = Constants.STOCK_CALC_TIME;
     }
 
     /**
@@ -127,7 +131,27 @@ public class JPMData {
         return allShareIndex;
     }
 
+    /**
+     *
+     * @param allShareIndex
+     */
     public void setAllShareIndex(BigDecimal allShareIndex) {
         this.allShareIndex = allShareIndex;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getStockUpdateTime() {
+        return stockUpdateTime;
+    }
+
+    /**
+     *
+     * @param stockUpdateTime
+     */
+    public void setStockUpdateTime(int stockUpdateTime) {
+        this.stockUpdateTime = stockUpdateTime;
     }
 }
