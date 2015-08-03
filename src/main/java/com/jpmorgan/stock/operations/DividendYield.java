@@ -14,7 +14,7 @@ import java.math.RoundingMode;
  *
  * @author manuelmerida
  */
-public final class DividendYield extends StockCalculus{
+public final class DividendYield extends StockCalculus {
 
     /**
      *
@@ -22,7 +22,7 @@ public final class DividendYield extends StockCalculus{
      */
     @Override
     public void execute(Stock stock) {
-        switch(stock.getType()){
+        switch (stock.getType()) {
             case Constants.COMMON_TYPE:
                 commonFormula(stock);
                 break;
@@ -34,21 +34,20 @@ public final class DividendYield extends StockCalculus{
                 break;
         }
     }
-    
-    private void commonFormula(Stock stock){
-    	BigDecimal dividend=BigDecimal.ZERO;
-    	if(stock.getPrice().compareTo(BigDecimal.ZERO)>0){
-    		dividend = stock.getLastDividend().divide(stock.getPrice(), Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
-    	}
-        stock.getCalculated().setDividendYield(dividend);
+
+    private void commonFormula(Stock stock) {
+        if (stock.getPrice().compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal dividend = stock.getLastDividend().divide(stock.getPrice(), Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
+            stock.getCalculated().setDividendYield(dividend);
+        }
+
     }
-    
-    private void preferredFormula(Stock stock){
-    	BigDecimal dividend=BigDecimal.ZERO;
-    	if(stock.getPrice().compareTo(BigDecimal.ZERO)>0){
-    		dividend = (stock.getLastDividend().multiply(stock.getParValue())).divide(stock.getPrice(), Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
-    	}
-        stock.getCalculated().setDividendYield(dividend);
+
+    private void preferredFormula(Stock stock) {
+        if (stock.getPrice().compareTo(BigDecimal.ZERO) > 0) {           
+            BigDecimal dividend = (stock.getFixedDividend().multiply(stock.getParValue())).divide(stock.getPrice(), Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
+            stock.getCalculated().setDividendYield(dividend);
+        }
+
     }
-    
 }

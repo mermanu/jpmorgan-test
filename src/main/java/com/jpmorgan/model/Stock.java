@@ -28,7 +28,7 @@ public class Stock {
     
     private BigDecimal price;
     
-    private float fixedDividend;
+    private BigDecimal fixedDividend;
     
     private Calculated calculated;
 
@@ -140,7 +140,7 @@ public class Stock {
      *
      * @return
      */
-    public float getFixedDividend() {
+    public BigDecimal getFixedDividend() {
         return fixedDividend;
     }
 
@@ -148,7 +148,7 @@ public class Stock {
      *
      * @param fixedDividend
      */
-    public void setFixedDividend(float fixedDividend) {
+    public void setFixedDividend(BigDecimal fixedDividend) {
         this.fixedDividend = fixedDividend;
     }  
 

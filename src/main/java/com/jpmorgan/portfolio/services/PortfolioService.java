@@ -10,8 +10,8 @@ package com.jpmorgan.portfolio.services;
  */
 public interface PortfolioService {
     
-    public void newStock(String symbol, String type, String lastDividend, String parValue, String price, String fixedDividend, String provider);
-    public void updateStockData(String symbol);
-    public void calculateAllShareIndex();
+    public void newStock(String symbol, String type, String lastDividend, String parValue, String price, String fixedDividend, String provider) throws Exception;
+    public void updateStockData(String symbol) throws Exception;
+    public void calculateAllShareIndex() throws Exception;
     
 }

@@ -16,40 +16,39 @@ import java.util.Calendar;
  *
  * @author manuelmerida
  */
-public final class StockPrice extends StockCalculus{
+public final class StockPrice extends StockCalculus {
 
     /**
      *
      * @param stock
      */
     @Override
-    public void execute(Stock stock) {        
+    public void execute(Stock stock) {
+        BigDecimal sumOfTmpTrades = BigDecimal.ZERO;
         BigDecimal sumOfShares = BigDecimal.ZERO;
-        BigDecimal price = BigDecimal.ZERO;
-        Calendar lastRange = getLastRange();
         boolean newPrice = false;
-        
-        for(Trade trade : stock.getTrades()){
-            if(trade.getTimestamp().after(lastRange)){            	
-            	newPrice=true;	
+
+        for (Trade trade : stock.getTrades()) {
+            if (trade.getTimestamp().after(getLastRange())) {
+                newPrice = true;
                 BigDecimal tmpNumShares = new BigDecimal(trade.getShares());
-                BigDecimal tmpTrade = trade.getPrice().multiply(tmpNumShares);                
+                BigDecimal tmpTrade = trade.getPrice().multiply(tmpNumShares);
+                sumOfTmpTrades = sumOfTmpTrades.add(tmpTrade);
                 sumOfShares = sumOfShares.add(tmpNumShares);
-                BigDecimal tmpPrice = tmpTrade.divide(sumOfShares, Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
-                price = price.add(tmpPrice);
             }
         }
-         
-        if(newPrice){
-        	System.out.println("Stock price is updated -- "+price);
-        	stock.setPrice(price);
-        	stock.getCalculated().setStockPrice(price);        	
+
+        if (newPrice) {
+            BigDecimal price = sumOfTmpTrades.divide(sumOfShares, Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
+            System.out.println("Stock price is updated -- " + price);
+            stock.setPrice(price);
+            stock.getCalculated().setStockPrice(price);
         }
     }
-    
-    private Calendar getLastRange(){
-        Calendar now = Calendar.getInstance();    
-        now.add(Calendar.MINUTE, - Constants.STOCK_CALC_TIME);
+
+    private Calendar getLastRange() {
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.MINUTE, -Constants.STOCK_CALC_TIME);
         return now;
     }
 }

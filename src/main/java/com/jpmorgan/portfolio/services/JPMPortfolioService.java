@@ -7,7 +7,6 @@ package com.jpmorgan.portfolio.services;
 import com.jpmorgan.data.DataStorage;
 import com.jpmorgan.factory.JPMorganServices;
 import com.jpmorgan.factory.PortfolioOperations;
-import com.jpmorgan.factory.StockOperations;
 import com.jpmorgan.model.Provider;
 import com.jpmorgan.model.Stock;
 import com.jpmorgan.stock.services.StockService;
@@ -20,14 +19,14 @@ import java.math.BigDecimal;
  */
 public class JPMPortfolioService implements PortfolioService{
 
-    public void newStock(String symbol, String type, String lastDividend, String parValue, String price, String fixedDividend, String provider) {
+    public void newStock(String symbol, String type, String lastDividend, String parValue, String price, String fixedDividend, String provider) throws Exception{
         Stock stock=new Stock();
         stock.setSymbol(symbol);    
         stock.setType(Integer.parseInt(type));
         stock.setLastDividend(new BigDecimal(lastDividend));
         stock.setParValue(new BigDecimal(parValue));
         stock.setPrice(new BigDecimal(price));
-        stock.setFixedDividend(new Float(fixedDividend));
+        stock.setFixedDividend(new BigDecimal(fixedDividend));
         if(DataStorage.jpmData.getProviders().get(provider)==null){
             Provider prov=new Provider();
             prov.setName(provider);
@@ -37,7 +36,7 @@ public class JPMPortfolioService implements PortfolioService{
         DataStorage.jpmData.getStocks().put(stock.getSymbol(), stock);   
     } 
     
-    public void updateStockData(String symbol){
+    public void updateStockData(String symbol) throws Exception{
     	StockService stockService=(StockService)JPMorganServices.STOCK_SERVICE.getInstance();     
         stockService.calculateStockPrice(symbol);
         stockService.calculateDividendYield(symbol);
@@ -48,7 +47,7 @@ public class JPMPortfolioService implements PortfolioService{
         System.out.println("Calculated stock price:"+DataStorage.jpmData.getStocks().get(symbol).getCalculated().getStockPrice());
     }
 
-	public void calculateAllShareIndex() {
+	public void calculateAllShareIndex() throws Exception{
 		 PortfolioOperations.GEOMETRIC_MEAN.getInstance().execute(DataStorage.jpmData.getStocks());	
 	}
 }

@@ -8,6 +8,8 @@ import com.jpmorgan.model.Client;
 import com.jpmorgan.model.Provider;
 import com.jpmorgan.model.Stock;
 import com.jpmorgan.model.Trade;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,27 +20,24 @@ import java.util.Map;
  * @author manuelmerida
  */
 public class JPMData {
-    
-    private Map<String,Stock> stocks;
-    
+
+    private Map<String, Stock> stocks;
     private List<Stock> stockHistory;
-    
     private List<Trade> tradesHistory;
-    
-    private Map<String,Client> clients;
-    
-    private Map<String,Provider> providers;
+    private Map<String, Client> clients;
+    private Map<String, Provider> providers;
+    private BigDecimal allShareIndex = new BigDecimal(BigInteger.ZERO);
 
     /**
      *
      */
     public JPMData() {
-        this.stocks=new HashMap<String, Stock>();
-        this.clients=new HashMap<String, Client>();
-        this.providers=new HashMap<String, Provider>();
+        this.stocks = new HashMap<String, Stock>();
+        this.clients = new HashMap<String, Client>();
+        this.providers = new HashMap<String, Provider>();
         this.tradesHistory = new ArrayList<Trade>();
         this.stockHistory = new ArrayList<Stock>();
-    } 
+    }
 
     /**
      *
@@ -86,7 +85,7 @@ public class JPMData {
      */
     public void setProviders(Map<String, Provider> providers) {
         this.providers = providers;
-    } 
+    }
 
     /**
      *
@@ -118,5 +117,13 @@ public class JPMData {
      */
     public void setTradesHistory(List<Trade> tradesHistory) {
         this.tradesHistory = tradesHistory;
-    }    
+    }
+
+    public BigDecimal getAllShareIndex() {
+        return allShareIndex;
+    }
+
+    public void setAllShareIndex(BigDecimal allShareIndex) {
+        this.allShareIndex = allShareIndex;
+    }
 }

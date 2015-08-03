@@ -11,6 +11,7 @@ import java.util.Scanner;
  * @author manuelmerida
  */
 public class UIScan {
+
     /**
      *
      */
@@ -22,5 +23,5 @@ public class UIScan {
      */
     public UIScan(Scanner reader) {
         this.reader = reader;
-    } 
+    }
 }
