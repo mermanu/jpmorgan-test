@@ -9,8 +9,8 @@ package com.jpmorgan.model;
  * @author manuelmerida
  */
 public class User {
+
     private String id;
-    
     private String name;
 
     /**
@@ -43,5 +43,5 @@ public class User {
      */
     public void setName(String name) {
         this.name = name;
-    }    
+    }
 }

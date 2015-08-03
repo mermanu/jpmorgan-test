@@ -9,9 +9,9 @@ package com.jpmorgan.data;
  * @author manuelmerida
  */
 public class DataStorage {
+
     /**
      *
      */
-    public static JPMData jpmData;   
-    
+    public static JPMData jpmData;
 }

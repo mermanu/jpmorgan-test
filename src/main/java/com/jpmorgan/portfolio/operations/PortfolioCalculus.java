@@ -12,10 +12,11 @@ import java.util.Map;
  *
  * @author manuelmerida
  */
-public abstract class PortfolioCalculus extends Operation{
+public abstract class PortfolioCalculus extends Operation {
+
     /**
      *
      * @param stocks
      */
-    public abstract void execute(Map<String,Stock> stocks);
+    public abstract void execute(Map<String, Stock> stocks);
 }

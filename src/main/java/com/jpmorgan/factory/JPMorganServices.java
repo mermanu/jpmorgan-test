@@ -12,19 +12,34 @@ import com.jpmorgan.stock.services.JPMStockService;
  * @author manuelmerida
  */
 public enum JPMorganServices {
-    PORTFOLIO_SERVICE(new JPMPortfolioService()),STOCK_SERVICE(new JPMStockService());
-    
+
+    /**
+     *
+     */
+    PORTFOLIO_SERVICE(new JPMPortfolioService()),
+    /**
+     *
+     */
+    STOCK_SERVICE(new JPMStockService());
     private Object instance;
 
     private JPMorganServices(Object instance) {
         this.instance = instance;
     }
 
+    /**
+     *
+     * @return
+     */
     public Object getInstance() {
         return instance;
     }
 
+    /**
+     *
+     * @param instance
+     */
     public void setInstance(Object instance) {
         this.instance = instance;
-    }   
+    }
 }

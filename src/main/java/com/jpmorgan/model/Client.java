@@ -8,6 +8,5 @@ package com.jpmorgan.model;
  *
  * @author manuelmerida
  */
-public class Client extends User{    
-    
+public class Client extends User {
 }

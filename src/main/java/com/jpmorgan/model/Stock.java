@@ -13,23 +13,15 @@ import java.util.List;
  * @author manuelmerida
  */
 public class Stock {
-    
+
     private String symbol;
-    
     private List<Trade> trades;
-            
     private Provider provider;
-    
     private int type;
-    
     private BigDecimal lastDividend;
-    
     private BigDecimal parValue;
-    
     private BigDecimal price;
-    
     private BigDecimal fixedDividend;
-    
     private Calculated calculated;
 
     /**
@@ -38,7 +30,7 @@ public class Stock {
     public Stock() {
         this.trades = new ArrayList<Trade>();
         this.calculated = new Calculated();
-    }    
+    }
 
     /**
      *
@@ -70,7 +62,7 @@ public class Stock {
      */
     public void setProvider(Provider provider) {
         this.provider = provider;
-    }   
+    }
 
     /**
      *
@@ -150,7 +142,7 @@ public class Stock {
      */
     public void setFixedDividend(BigDecimal fixedDividend) {
         this.fixedDividend = fixedDividend;
-    }  
+    }
 
     /**
      *
@@ -166,7 +158,7 @@ public class Stock {
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }   
+    }
 
     /**
      *
@@ -182,5 +174,5 @@ public class Stock {
      */
     public void setCalculated(Calculated calculated) {
         this.calculated = calculated;
-    }    
+    }
 }

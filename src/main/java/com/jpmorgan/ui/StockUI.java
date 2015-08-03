@@ -42,13 +42,13 @@ public class StockUI extends UIScan {
             String indicator = reader.nextLine();
             System.out.println("Insert client:");
             String client = reader.nextLine();
-            try{
+            try {
                 stockService.recordTrade(symbol, shares, price, indicator, client);
-             }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 newTrade();
             }
-            
+
         } else {
             System.out.println("invalid stock symbol");
             newTrade();
@@ -63,9 +63,9 @@ public class StockUI extends UIScan {
         String symbol = reader.nextLine();
         if (DataStorage.jpmData.getStocks().get(symbol) != null) {
             PortfolioService portfolioService = (PortfolioService) JPMorganServices.PORTFOLIO_SERVICE.getInstance();
-            try{
+            try {
                 portfolioService.updateStockData(symbol);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 updateStockData();
             }
@@ -75,6 +75,9 @@ public class StockUI extends UIScan {
         }
     }
 
+    /**
+     *
+     */
     public void report() {
         System.out.println("Insert stock symbol:");
         String symbol = reader.nextLine();
@@ -92,7 +95,6 @@ public class StockUI extends UIScan {
             }
         } else {
             System.out.println("invalid stock symbol");
-            report();
         }
     }
 }

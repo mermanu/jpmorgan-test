@@ -11,12 +11,11 @@ import com.jpmorgan.model.Stock;
  *
  * @author manuelmerida
  */
-public abstract class StockCalculus extends Operation{
-    
+public abstract class StockCalculus extends Operation {
+
     /**
      *
      * @param stock
      */
     public abstract void execute(Stock stock);
-    
 }

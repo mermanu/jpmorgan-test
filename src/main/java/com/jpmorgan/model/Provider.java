@@ -8,6 +8,5 @@ package com.jpmorgan.model;
  *
  * @author manuelmerida
  */
-public class Provider extends User{    
-    
+public class Provider extends User {
 }

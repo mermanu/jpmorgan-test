@@ -16,29 +16,29 @@ import java.util.Calendar;
  *
  * @author manuelmerida
  */
-public class JPMStockService implements StockService{
+public class JPMStockService implements StockService {
 
-    public void calculateDividendYield(String stockKey) throws Exception{
+    public void calculateDividendYield(String stockKey) throws Exception {
         StockOperations.DIVIDEND_YIELD.getInstance().execute(DataStorage.jpmData.getStocks().get(stockKey));
     }
 
-    public void calculatePERadio(String stockKey) throws Exception{
+    public void calculatePERadio(String stockKey) throws Exception {
         StockOperations.PERATIO.getInstance().execute(DataStorage.jpmData.getStocks().get(stockKey));
     }
 
-    public void calculateStockPrice(String stockKey) throws Exception{
+    public void calculateStockPrice(String stockKey) throws Exception {
         StockOperations.STOCKPRICE.getInstance().execute(DataStorage.jpmData.getStocks().get(stockKey));
     }
 
-    public void recordTrade(String stockKey, String shares, String price, String indicator, String clientKey) throws Exception{
+    public void recordTrade(String stockKey, String shares, String price, String indicator, String clientKey) throws Exception {
         Stock stock = DataStorage.jpmData.getStocks().get(stockKey);
-        Trade trade=new Trade();
-        Integer sharesNumber=Integer.parseInt(shares);   
-        
-        if(DataStorage.jpmData.getClients().get(clientKey)==null){
-            Client client=new Client();
+        Trade trade = new Trade();
+        Integer sharesNumber = Integer.parseInt(shares);
+
+        if (DataStorage.jpmData.getClients().get(clientKey) == null) {
+            Client client = new Client();
             client.setName(clientKey);
-            DataStorage.jpmData.getClients().put(clientKey,client);
+            DataStorage.jpmData.getClients().put(clientKey, client);
         }
         trade.setClient(DataStorage.jpmData.getClients().get(clientKey));
         trade.setIndicator(Integer.parseInt(indicator));
@@ -48,5 +48,4 @@ public class JPMStockService implements StockService{
         trade.setTimestamp(Calendar.getInstance());
         stock.getTrades().add(trade);
     }
-    
 }

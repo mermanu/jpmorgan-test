@@ -7,33 +7,27 @@ package com.jpmorgan.model;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-
 /**
  *
  * @author manuelmerida
  */
 public class Trade {
-    
+
     //number of shares
-    private Integer shares;    
-    
+    private Integer shares;
     private Calendar timestamp;
-    
     //buy sell indicator
-    private int indicator;   
-    
+    private int indicator;
     private BigDecimal price;
-    
     private Client client;
-    
     private Stock stock;
 
     /**
      *
      */
     public Trade() {
-    }  
-    
+    }
+
     /**
      *
      * @return
@@ -48,7 +42,7 @@ public class Trade {
      */
     public void setClient(Client client) {
         this.client = client;
-    } 
+    }
 
     /**
      *
@@ -80,7 +74,7 @@ public class Trade {
      */
     public void setStock(Stock stock) {
         this.stock = stock;
-    }  
+    }
 
     /**
      *
@@ -96,7 +90,7 @@ public class Trade {
      */
     public void setTimestamp(Calendar timestamp) {
         this.timestamp = timestamp;
-    }   
+    }
 
     /**
      *
@@ -128,5 +122,5 @@ public class Trade {
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }    
+    }
 }

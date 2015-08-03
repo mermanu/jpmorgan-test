@@ -119,6 +119,10 @@ public class JPMData {
         this.tradesHistory = tradesHistory;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getAllShareIndex() {
         return allShareIndex;
     }

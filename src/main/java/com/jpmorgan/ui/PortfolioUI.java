@@ -46,9 +46,9 @@ public class PortfolioUI extends UIScan {
         String provider = reader.nextLine();
 
         PortfolioService portfolioService = (PortfolioService) JPMorganServices.PORTFOLIO_SERVICE.getInstance();
-        try{
+        try {
             portfolioService.newStock(symbol, type, lastDividend, parValue, price, fixedDividend, provider);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             newStock();
         }
@@ -59,14 +59,17 @@ public class PortfolioUI extends UIScan {
      */
     public void updatePortfolio() {
         PortfolioService portfolioService = (PortfolioService) JPMorganServices.PORTFOLIO_SERVICE.getInstance();
-        try{
+        try {
             portfolioService.calculateAllShareIndex();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             updatePortfolio();
         }
     }
 
+    /**
+     *
+     */
     public void report() {
         if (!DataStorage.jpmData.getStocks().isEmpty()) {
             System.out.println("--------------------------------------------------------------");

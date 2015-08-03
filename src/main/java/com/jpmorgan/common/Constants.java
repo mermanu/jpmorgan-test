@@ -9,6 +9,7 @@ package com.jpmorgan.common;
  * @author manuelmerida
  */
 public class Constants {
+
     /**
      *
      */
@@ -25,11 +26,12 @@ public class Constants {
      *
      */
     public static final int PEFERRED_TYPE = 2;
-    
     /**
      *
      */
     public static final int STOCK_CALC_TIME = 2;
-    
+    /**
+     *
+     */
     public static final int DECIMAL_SCALE = 2;
 }

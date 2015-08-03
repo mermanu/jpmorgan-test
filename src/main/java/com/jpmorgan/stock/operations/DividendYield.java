@@ -44,7 +44,7 @@ public final class DividendYield extends StockCalculus {
     }
 
     private void preferredFormula(Stock stock) {
-        if (stock.getPrice().compareTo(BigDecimal.ZERO) > 0) {           
+        if (stock.getPrice().compareTo(BigDecimal.ZERO) > 0) {
             BigDecimal dividend = (stock.getFixedDividend().multiply(stock.getParValue())).divide(stock.getPrice(), Constants.DECIMAL_SCALE, RoundingMode.HALF_UP);
             stock.getCalculated().setDividendYield(dividend);
         }

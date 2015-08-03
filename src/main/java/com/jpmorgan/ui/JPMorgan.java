@@ -59,6 +59,11 @@ public class JPMorgan {
 
     }
 
+    /**
+     *
+     * @param scanned
+     * @param reader
+     */
     public static void showMenu(String scanned, Scanner reader) {
         System.out.println("\n");
         System.out.println("-----------------------------------");

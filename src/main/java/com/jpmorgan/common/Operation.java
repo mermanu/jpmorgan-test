@@ -9,6 +9,7 @@ package com.jpmorgan.common;
  * @author manuelmerida
  */
 public class Operation {
+
     private String code;
 
     /**
@@ -25,5 +26,5 @@ public class Operation {
      */
     public void setCode(String code) {
         this.code = code;
-    }   
+    }
 }

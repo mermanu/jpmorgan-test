@@ -9,16 +9,15 @@ package com.jpmorgan.model;
  * @author manuelmerida
  */
 public class Calculated {
+
     /**
      *
      */
     protected Number dividendYield;
-    
     /**
      *
      */
     protected Number peRatio;
-    
     /**
      *
      */
@@ -70,5 +69,5 @@ public class Calculated {
      */
     public void setStockPrice(Number stockPrice) {
         this.stockPrice = stockPrice;
-    }   
+    }
 }
