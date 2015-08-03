@@ -74,7 +74,9 @@ public class PortfolioUI extends UIScan {
         if (!DataStorage.jpmData.getStocks().isEmpty()) {
             System.out.println("--------------------------------------------------------------");
             for (Entry<String, Stock> entry : DataStorage.jpmData.getStocks().entrySet()) {
-                System.out.println("Symbol: " + entry.getKey() + " | price: " + entry.getValue().getPrice());
+                System.out.println("Symbol: " + entry.getKey() + " | price: " + entry.getValue().getPrice()+ " | last dividend: " +entry.getValue().getLastDividend()
+                        + " | fixed dividend: " +entry.getValue().getFixedDividend()+ " | par value: " +entry.getValue().getParValue()
+                        + " | dividend yield: " +entry.getValue().getCalculated().getDividendYield()+ " | P/E ratio: " +entry.getValue().getCalculated().getPeRatio());   
             }
             System.out.println("--------------------------------------------------------------");
         } else {
